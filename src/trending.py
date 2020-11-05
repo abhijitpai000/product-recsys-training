@@ -41,12 +41,13 @@ def top_trending():
     m = trending["total_reviews"].quantile(0.9)
 
     # Weighted Average.
-    trending["weighted_average"] = (trending["total_reviews"]/(trending["total_reviews"]+m))*trending["avg_review_score"] + \
-                               (m/(trending["total_reviews"]+m))*c
+    trending["weighted_average"] = (trending["total_reviews"] / (trending["total_reviews"] + m)) * \
+                                   (trending["avg_review_score"] + (m / (trending["total_reviews"] + m)) * c)
 
     # Top 10.
-    top_trending = trending.sort_values("weighted_average", ascending=False).head(10)
-    file_path = Path.cwd() / "datasets/top_trending.csv"
-    top_trending.to_csv(file_path, index=False)
+    top_ten = trending.sort_values("weighted_average", ascending=False).head(10)
 
-    return top_trending
+    file_path = Path.cwd() / "datasets/top_ten_trending.csv"
+    top_ten.to_csv(file_path)
+
+    return top_ten

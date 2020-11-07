@@ -5,6 +5,8 @@ Performs data pre-processing.
 """
 import pandas as pd
 from pathlib import Path
+from sklearn.preprocessing import OrdinalEncoder
+import joblib
 
 
 def _combine_datasets():
@@ -13,7 +15,7 @@ def _combine_datasets():
 
     Returns
     -------
-        review_data_raw dataframe
+        review_data dataframe
     """
     customers = pd.read_csv("datasets/olist_customers_dataset.csv")
     orders = pd.read_csv("datasets/olist_orders_dataset.csv")
@@ -43,14 +45,23 @@ def _combine_datasets():
     data.drop_duplicates(inplace=True)
 
     # Review data raw
-    review_data_raw = data[["customer_unique_id", "product_category_name_english", "review_score"]].copy()
-    review_data_raw["product_category_name_english"].fillna("Others", axis=0, inplace=True)  # Fix Missing categories
+    review_data = data[["customer_unique_id", "product_category_name_english", "review_score"]].copy()
+    review_data["product_category_name_english"].fillna("Others", axis=0, inplace=True)  # Fix Missing categories
 
     # Re-naming columns
-    review_data_raw.rename(columns={"customer_unique_id": "customer_id",
-                                    "product_category_name_english": "product_category"},
-                           inplace=True)
-    return review_data_raw
+    review_data.rename(columns={"customer_unique_id": "customer_id",
+                                "product_category_name_english": "product_category"},
+                       inplace=True)
+
+    # Encoding Customer Ids.
+    encoder = OrdinalEncoder()
+    encoded = encoder.fit_transform(review_data[["customer_id"]])
+    review_data["customer_id"] = encoded.astype("int").copy()
+
+    # saving encoder.
+    file_path = Path.cwd() / "datasets/customer_id_encoder.pkl"
+    joblib.dump(encoder, file_path)
+    return review_data
 
 
 def make_dataset():

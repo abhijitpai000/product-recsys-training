@@ -1,5 +1,5 @@
 """
-Computes Weighted Average for each products.
+Computes Weighted Average for each product.
 
 Formula:
 WR = (v/v+m)*R+(m/v+m)*C
@@ -13,9 +13,9 @@ import pandas as pd
 from pathlib import Path
 
 
-def top_trending():
+def compute_top_ten():
     """
-    Computes Weighted Average for each products.
+    Computes Weighted Average for each product and returns top ten.
 
     Formula:
     WR = (v/v+m)*R+(m/v+m)*C
@@ -46,8 +46,9 @@ def top_trending():
 
     # Top 10.
     top_ten = trending.sort_values("weighted_average", ascending=False).head(10)
+    top_ten = top_ten.drop("avg_review_score", axis=1)
+    top_ten.reset_index(inplace=True)
 
-    file_path = Path.cwd() / "datasets/top_ten_trending.csv"
-    top_ten.to_csv(file_path)
-
+    file_path = Path.cwd() / "datasets/top_ten_trending.json"
+    top_ten.to_json(file_path)
     return top_ten

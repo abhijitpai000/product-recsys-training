@@ -9,19 +9,15 @@ from surprise import KNNBasic
 from surprise import dump
 
 
-def train_model():
+def train_item_rec_sys():
     """
     Trains KNNBasic Model.
 
     Yields
     ------
-        item_colab_filter.pkl
-
-    Returns
-    -------
-        #todo: Add returns.
+        similar_items_algo.pkl
     """
-    review_data = pd.read_csv("datasets/review_data.csv")
+    review_data = pd.read_csv("datasets/item_rec_sys_data.csv")
 
     # Creating Data object.
     reader = Reader(rating_scale=(1, 5))

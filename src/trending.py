@@ -29,7 +29,7 @@ def compute_top_ten():
     -------
         Top Trending Products Categories.
     """
-    review_data = pd.read_csv("datasets/review_data.csv")
+    review_data = pd.read_csv("datasets/item_rec_sys_data.csv")
 
     trending = review_data.groupby("product_category")[["review_score"]].agg(["mean", "count"])
     trending.columns = ["avg_review_score", "total_reviews"]

@@ -24,10 +24,6 @@ def compute_top_ten():
     m = Minimum votes required to qualify to trending list
     R = Average Rating
     C = Mean rating across the report.
-
-    Returns
-    -------
-        Top Trending Products Categories.
     """
     review_data = pd.read_csv("datasets/item_rec_sys_data.csv")
 
@@ -51,4 +47,4 @@ def compute_top_ten():
 
     file_path = Path.cwd() / "datasets/top_ten_trending.json"
     top_ten.to_json(file_path)
-    return top_ten
+    return

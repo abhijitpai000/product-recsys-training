@@ -1,8 +1,8 @@
 """
 Train KNNBasic Item-Collaborative Filtering algorithm for finding similar items.
 """
+
 import pandas as pd
-import numpy as np
 from pathlib import Path
 from surprise import Dataset, Reader
 from surprise import KNNBasic
@@ -35,7 +35,7 @@ def _compute_inner_item_ids(item_rec_sys_data, algo, trainset):
         item_inner_id_mapping[category] = inner_id
 
     # Saving .json file.
-    file_path = Path.cwd() / "datasets/item_inner_id_mapping.json"
+    file_path = Path.cwd() / "datasets/item_id_mapping.json"
     json.dump(item_inner_id_mapping, open(file_path, 'w'))
     return
 
@@ -56,7 +56,6 @@ def train_item_rec_sys():
     trainset = data.build_full_trainset()
 
     # Training Algorithm.
-    np.random.seed(0)
     sim_options = {
         "name": "cosine",
         "user_based": False

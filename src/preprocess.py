@@ -137,5 +137,4 @@ def make_datasets():
     # Creating datasets for recommendation systems.
     item_rec_sys_data = _make_item_rec_sys_data(review_data)
     user_rec_sys_data = _make_user_rec_sys_data(item_rec_sys_data)
-
-    return item_rec_sys_data, user_rec_sys_data
+    return

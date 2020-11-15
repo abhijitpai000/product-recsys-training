@@ -11,7 +11,7 @@ from pathlib import Path
 
 def train_user_rec_sys():
     """
-    Trains SlopeOne Algorithm for generating predictions for all users.
+    Trains SVD Algorithm for generating predictions for all users.
 
     Yields
     ------

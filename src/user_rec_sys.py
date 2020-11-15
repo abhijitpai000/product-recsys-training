@@ -9,32 +9,6 @@ from surprise.dump import dump
 from pathlib import Path
 
 
-def _make_user_predictions(trainset, algo):
-    """
-    Make Predictions for all users.
-
-    Parameters
-    ----------
-        trainset: trainset data object.
-        algo: fit SlopeOne Algorithm.
-
-    Yields
-    ------
-        all_user_predictions.csv
-    """
-    testset = trainset.build_anti_testset()
-    all_user_predictions = algo.test(testset)
-    all_user_predictions = pd.DataFrame(all_user_predictions).drop(["r_ui", "details"], axis=1)
-    all_user_predictions = all_user_predictions.rename(columns={"uid": "user_raw_id",
-                                                                "est": "estimated_rating",
-                                                                "iid": "item_raw_id"})
-    # Saving file.
-    file_path = Path.cwd() / "datasets/all_user_predictions.csv"
-    all_user_predictions.to_csv(file_path, index=False)
-
-    return
-
-
 def train_user_rec_sys():
     """
     Trains SlopeOne Algorithm for generating predictions for all users.
@@ -51,7 +25,6 @@ def train_user_rec_sys():
     # Training.
     algo = SVD()
     algo.fit(trainset)
-    _make_user_predictions(trainset, algo)
 
     # Saving Algorithm.
     file_path = Path.cwd() / "models/user_predictions_algo.pkl"

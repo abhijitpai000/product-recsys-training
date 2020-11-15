@@ -93,10 +93,6 @@ def make_datasets():
     ------
         item_rec_sys_data.csv
         user_rec_sys_data.csv
-
-    Returns
-    -------
-        item_rec_sys_data, user_rec_sys_data
     """
     customers = pd.read_csv("datasets/olist_customers_dataset.csv")
     orders = pd.read_csv("datasets/olist_orders_dataset.csv")

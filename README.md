@@ -6,7 +6,12 @@ This repository holds the model training part of the product-recsys application 
     ├── datasets                   # .csv file raw and generated during model training.
     ├── models                     # .pkl files generated during model training.
     ├── src                        # Source files, scripts for training.
-    ├── test                       # Sanity tests.
+        ├── preprocess.py                  # Combines .csv files and generates datasets for training.
+        ├── trending.py                    # Computes top ten trending products.
+        ├── item_rec_sys.py                # Trains KNNBasic algorithm.
+        ├── user_rec_sys.py                # Trains SVD algorithm.
+    ├── tests
+        ├── test_preprocess.py             # Checks .csv file generated during pre-processing.
     ├── run.py                     # Run the entire training process from command line.
     ├── requirements.txt           # Python packages required for training.
     ├── LICENSE
@@ -52,7 +57,7 @@ This repository has been tested on Python 3.7.6.
 
 `python run.py`
 
-3. Run test.py for a quick sanity check.
+3. Run tests for a quick sanity check.
 
 `cd tests`
 

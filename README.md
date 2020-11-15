@@ -9,9 +9,9 @@ This repository holds the model training part of the product-recsys application 
         ├── preprocess.py                  # Combines .csv files and generates datasets for training.
         ├── trending.py                    # Computes top ten trending products.
         ├── item_rec_sys.py                # Trains KNNBasic algorithm.
-        ├── user_rec_sys.py                # Trains SVD algorithm.
+        └── user_rec_sys.py                # Trains SVD algorithm.
     ├── tests
-        ├── test_preprocess.py             # Checks .csv file generated during pre-processing.
+        └── test_preprocess.py             # Checks .csv file generated during pre-processing.
     ├── run.py                     # Run the entire training process from command line.
     ├── requirements.txt           # Python packages required for training.
     ├── LICENSE

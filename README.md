@@ -50,14 +50,15 @@ This repository has been tested on Python 3.7.6.
 
 ## Training
 
-1. Download .csv from [Brazilian E-Commerce Public Dataset](https://www.kaggle.com/olistbr/brazilian-ecommerce) and place it in datasets directory, unzip the .zip file.
+1. Download .csv from [Brazilian E-Commerce Public Dataset](https://www.kaggle.com/olistbr/brazilian-ecommerce) and place it in '../datasets' directory, unzip the .zip file (this should produce 9 .csv files)
+2. Set the current working directory to 'product-recsys-training' clone directory.
 
-### Train models using cmd
-2. Use run.py to preprocess, train and save files through command line.
+### Train models using cmd (Windows)
+1. Use run.py in CMD to preprocess, train and save files. 
 
 `python run.py`
 
-3. Run tests for a quick sanity check.
+2. Run tests for a quick sanity check.
 
 `cd tests`
 
@@ -66,12 +67,13 @@ This repository has been tested on Python 3.7.6.
 *OR*
 
 ### Train models in a Jupyter notebook
-1. Utilize modules from 'src' as python package and run it using Jupyter Notebooks.
+
+Utilize modules from 'src' as python package and run it in Jupyter Notebooks by importing following local modules from the 'src' directory of this repo.
 
 | Module | Function | Description | Parameters | Yields | Returns |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | preprocess | make_datasets() | Pre-processes raw .csv files | -- | item_rec_sys_data.csv, user_rec_sys_data.csv & customer_id_encoder.pkl | --
-| trending | compute_top_ten | Computes weighted average and generates top ten products | -- | top_ten_trending.json | --
+| trending | compute_top_ten() | Computes weighted average and generates top ten products | -- | top_ten_trending.json | --
 | item_rec_sys | train_item_rec_sys() | Trains KNNBasic Algorithm | -- | similar_items_algo.pkl | --
 | user_rec_sys | train_user_rec_sys() | Trains SVD Algorithm | -- | user_predictions_algo.pkl | --
 

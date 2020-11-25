@@ -50,11 +50,11 @@ This repository has been tested on Python 3.7.6.
 
 ## Training
 
-1. Download .csv from [Brazilian E-Commerce Public Dataset](https://www.kaggle.com/olistbr/brazilian-ecommerce) and place it in '../datasets' directory, unzip the .zip file (this should produce 9 .csv files)
+1. Download datasets zip file from [Brazilian E-Commerce Public Dataset](https://www.kaggle.com/olistbr/brazilian-ecommerce) and place it in '../datasets' directory, unzip the .zip file (this should produce 9 .csv files)
 2. Set the current working directory to 'product-recsys-training' clone directory.
 
-### Train models using cmd (Windows)
-1. Use run.py in CMD to preprocess, train and save files. 
+### Train models - Terminal
+1. Use run.py to preprocess, train and save files. 
 
 `python run.py`
 
